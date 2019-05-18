@@ -1,68 +1,15 @@
 package business.model;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
+import common.PedaggioException;
 
-public class Pedaggio {
+public interface Pedaggio {
 	
-	private Casello entrata;
-	private Casello uscita;
-	private Veicolo veicolo;
-	private DoubleProperty prezzo = new SimpleDoubleProperty();
-	private Normativa normativa;
-	
-	
-	public Casello getEntrata() {
-		return entrata;
-	}
-
-
-
-	public void setEntrata(Casello entrata) {
-		this.entrata = entrata;
-	}
-
-
-
-	public Casello getUscita() {
-		return uscita;
-	}
-
-
-
-	public void setUscita(Casello uscita) {
-		this.uscita = uscita;
-	}
-
-
-
-	public Veicolo getVeicolo() {
-		return veicolo;
-	}
-
-
-
-	public void setVeicolo(Veicolo veicolo) {
-		this.veicolo = veicolo;
-	}
-
-
-
-	public Normativa getNormativa() {
-		return normativa;
-	}
-
-
-
-	public void setNormativa(Normativa normativa) {
-		this.normativa = normativa;
-	}
-
-	public double getPrezzo() {
-		return this.prezzo.doubleValue();
-	}
-
-	public void calcolaPrezzo() {
-		this.prezzo.set(normativa.calcola(veicolo, entrata, uscita));
-	}
+	public Veicolo getVeicolo();
+	public void setVeicolo(Veicolo veicolo);
+	public Casello getEntrata();
+	public void setEntrata(Casello entrata);
+	public Casello getUscita();
+	public void setUscita(Casello uscita);
+	public float getPrezzo();
+	public void calcolaPrezzo() throws PedaggioException;
 }
