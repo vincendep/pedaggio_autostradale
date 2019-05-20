@@ -16,7 +16,6 @@ public abstract class MysqlDao extends Dao {
 
         try  {
             Class.forName(DRIVER).newInstance();
-            //TODO create db_user
             conn = DriverManager.getConnection(URL,  "root",  "");
 
         } catch (Exception e)  {

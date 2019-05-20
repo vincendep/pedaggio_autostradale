@@ -2,10 +2,14 @@ package presentation.admin;
 
 import java.util.List;
 
+import business.AutostradaMgr;
 import business.model.Autostrada;
 import business.model.Normativa;
 import business.model.impl.AutostradaImpl;
 import business.model.impl.Normativa2019Impl;
+import common.ManagerException;
+import dao.DaoFactory;
+import dao.DaoFactory.FactoryType;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -51,11 +55,17 @@ public class AdminNewHighwayDialogController extends Controller {
 			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_3, Float.parseFloat(tariffaClasse3Field.getText()));
 			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_4, Float.parseFloat(tariffaClasse4Field.getText()));
 			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_5, Float.parseFloat(tariffaClasse5Field.getText()));
-			autostrade.add(autostrada);
-			stage.close();
-		} catch (InstantiationException | IllegalAccessException e) {
+			
+			new AutostradaMgr().add(autostrada);
+			this.autostrade.add(autostrada);
+			
+		} catch (ManagerException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		stage.close();
 	}
 	
 	@FXML

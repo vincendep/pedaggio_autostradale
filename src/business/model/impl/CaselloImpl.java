@@ -1,20 +1,30 @@
 package business.model.impl;
 
+
 import business.model.Autostrada;
 import business.model.Casello;
+
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+
 public class CaselloImpl implements Casello {
 	
-	private final IntegerProperty id = new SimpleIntegerProperty();
-	private final StringProperty nome = new SimpleStringProperty();
-	private final IntegerProperty chilometro = new SimpleIntegerProperty();
+	private final IntegerProperty id;
+	private final StringProperty nome;
+	private final IntegerProperty chilometro;
 	private Autostrada autostrada;
+	
+	
+	public CaselloImpl() {
+		id = new SimpleIntegerProperty();
+		nome = new SimpleStringProperty();
+		chilometro = new SimpleIntegerProperty();
+		
+		autostrada = new AutostradaImpl();
+	}
 	
 	public int getId() {
 		return this.id.get();

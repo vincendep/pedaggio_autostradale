@@ -3,13 +3,13 @@ package dao;
 import java.util.List;
 
 import business.model.Autostrada;
+import common.DaoException;
 
 public interface AutostradaDao {
 
-	long getId(String nome);
-	List<Autostrada> getAll();
-	Autostrada getByName(String nome);
-	void store(Autostrada autostrada);
-	void update(Autostrada autostrada);
-	void delete(Autostrada autostrada);
+	int getId(Autostrada autostrada) throws DaoException;
+	List<Autostrada> loadAll() throws DaoException;
+	void store(Autostrada autostrada) throws DaoException;
+	void update(String nome, Autostrada autostrada) throws DaoException;
+	void delete(Autostrada autostrada) throws DaoException;
 }

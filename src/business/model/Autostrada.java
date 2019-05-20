@@ -3,12 +3,13 @@ package business.model;
 import java.util.List;
 
 import business.model.impl.Normativa2019Impl;
-
+import dao.DaoFactory;
+import dao.DaoFactory.FactoryType;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
 public interface Autostrada {
-	
+	@SuppressWarnings("rawtypes")
 	public static Class NORMATIVA_VIGENTE = Normativa2019Impl.class;
 	
 	public String getNome();

@@ -15,45 +15,41 @@ public class PedaggioImpl implements Pedaggio {
 	private float prezzo;
 	
 	
+	public PedaggioImpl() {
+		entrata = new CaselloImpl();
+		uscita = new CaselloImpl();
+		veicolo = new VeicoloImpl();
+	
+	}
+	
 	public Casello getEntrata() {
 		return entrata;
 	}
-
-
 
 	public void setEntrata(Casello entrata) {
 		this.entrata = entrata;
 	}
 
-
-
 	public Casello getUscita() {
 		return uscita;
 	}
-
-
 
 	public void setUscita(Casello uscita) {
 		this.uscita = uscita;
 	}
 
-
-
 	public Veicolo getVeicolo() {
 		return veicolo;
 	}
-
 
 	public void setVeicolo(Veicolo veicolo) {
 		this.veicolo = veicolo;
 	}
 
-	
 	public float getPrezzo() {
 		return this.prezzo;
 	}
 	
-
 	public void calcolaPrezzo() throws PedaggioException {
 		try {
 			this.prezzo = (entrata.getAutostrada().getNormativaVigente().calcolaPedaggio(veicolo, entrata, uscita));

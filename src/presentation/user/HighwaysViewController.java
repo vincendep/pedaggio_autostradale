@@ -1,9 +1,10 @@
 package presentation.user;
 
+import business.AutostradaMgr;
 import business.Main;
 import business.model.Autostrada;
 import business.model.Casello;
-
+import common.ManagerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,14 +38,13 @@ public class HighwaysViewController extends Controller {
 	private Casello caselloSelezionato;
 	
 	public HighwaysViewController() {
-		//Dummy data
-
-		autostrade.setAll(Main.AUTOSTRADE);
+	
+		try {
+			autostrade.setAll(new AutostradaMgr().getAll());
 		
-		
-		/*DaoFactory factory = DaoFactory.getDaoFactory(FactoryType.MYSQL);
-		AutostradaDao adao = factory.getAutostradaDao();
-		autostrade.setAll(adao.getAll());*/
+		} catch (ManagerException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML

@@ -1,13 +1,11 @@
 package presentation.admin;
 
-import java.util.List;
-
+import business.AutostradaMgr;
+import business.CaselloMgr;
 import business.model.Autostrada;
 import business.model.Casello;
-import business.model.impl.AutostradaImpl;
 import business.model.impl.CaselloImpl;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import common.ManagerException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 import presentation.shared.Controller;
 
 
@@ -68,7 +67,7 @@ public class AdminHighwayTollboothsViewController extends Controller {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(AdminHighwayNewTollboothDialogController.class.getResource("admin-highway-tollbooth-dialog.fxml"));
 		AdminHighwayNewTollboothDialogController controller = new AdminHighwayNewTollboothDialogController();
-		controller.setCaselli(autostrada.getCaselli());
+		controller.setAutostrada(autostrada);
 		controller.setStage(stage);
 		loader.setController(controller);
 		try {
@@ -101,8 +100,12 @@ public class AdminHighwayTollboothsViewController extends Controller {
 	
 	@FXML
 	public void eliminaHandle() {
-		autostrada.getCaselli().remove(caselloSelezionato);
-
+		try {
+			new CaselloMgr().remove(caselloSelezionato);;
+			autostrada.getCaselli().remove(caselloSelezionato);
+		} catch (ManagerException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

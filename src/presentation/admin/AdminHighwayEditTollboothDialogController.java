@@ -1,8 +1,9 @@
 package presentation.admin;
 
 
+import business.CaselloMgr;
 import business.model.Casello;
-
+import common.ManagerException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -39,10 +40,17 @@ public class AdminHighwayEditTollboothDialogController extends Controller {
 	
 	@FXML
 	public void handleConferma() {
-		casello.setNome(nomeField.getText());
-		casello.setChilometro(Integer.parseInt(chilometroField.getText()));
-		casello.setId(Integer.parseInt(identificativoField.getText()));
-		
+		String nome = casello.getNome();
+		try {
+			casello.setNome(nomeField.getText());
+			casello.setChilometro(Integer.parseInt(chilometroField.getText()));
+			casello.setId(Integer.parseInt(identificativoField.getText()));
+			
+			new CaselloMgr().modify(nome, casello);
+			
+		} catch (ManagerException e) {
+			e.printStackTrace();
+		}
 		stage.close();
 	}
 	

@@ -16,13 +16,24 @@ public class Normativa2019Impl implements Normativa {
 	public static final int CLASSE_4 = 4;
 	public static final int CLASSE_5 = 5;
 	
-	private FloatProperty tariffaClasseA = new SimpleFloatProperty();
-	private FloatProperty tariffaClasseB = new SimpleFloatProperty();;
-	private FloatProperty tariffaClasse3 = new SimpleFloatProperty();
-	private FloatProperty tariffaClasse4 = new SimpleFloatProperty();
-	private FloatProperty tariffaClasse5 = new SimpleFloatProperty();
+	private FloatProperty tariffaClasseA;
+	private FloatProperty tariffaClasseB;
+	private FloatProperty tariffaClasse3;
+	private FloatProperty tariffaClasse4;
+	private FloatProperty tariffaClasse5;
 	
 	private Autostrada autostrada;
+	
+	
+	public Normativa2019Impl() {
+		tariffaClasseA = new SimpleFloatProperty();
+		tariffaClasseB = new SimpleFloatProperty();
+		tariffaClasse3 = new SimpleFloatProperty();
+		tariffaClasse4 = new SimpleFloatProperty();
+		tariffaClasse5 = new SimpleFloatProperty();
+		
+		autostrada = new AutostradaImpl();
+	}
 
 	@Override
 	public Autostrada getAutostrada() {
@@ -128,23 +139,7 @@ public class Normativa2019Impl implements Normativa {
 				return -1;
 		}
 	}
-
-
-	@Override
-	public float calcolaPedaggio(Veicolo veicolo, Casello entrata, Casello uscita) throws PercorsoException {
-		if (! entrata.getAutostrada().equals(uscita.getAutostrada()) || entrata.equals(uscita)) {
-			throw new PercorsoException();
-		}
-
-		float chilometri = Math.abs(uscita.getChilometro() - entrata.getChilometro());
-		float tariffa = getTariffaVeicolo(veicolo);
-		float costo = tariffa * chilometri;
-		float costoTassato = costo + costo * IVA;
-
-		return Math.round(costoTassato * 10) / 10f;
-	}
-
-
+	
 	@Override
 	public int getClasseVeicolo(Veicolo veicolo) {
 		if (veicolo.getNumeroAssi() == 2 ) {
@@ -160,6 +155,20 @@ public class Normativa2019Impl implements Normativa {
 		} else {
 			return CLASSE_5;
 		}
+	}
+
+	@Override
+	public float calcolaPedaggio(Veicolo veicolo, Casello entrata, Casello uscita) throws PercorsoException {
+		if (! entrata.getAutostrada().equals(uscita.getAutostrada()) || entrata.equals(uscita)) {
+			throw new PercorsoException();
+		}
+
+		float chilometri = Math.abs(uscita.getChilometro() - entrata.getChilometro());
+		float tariffa = getTariffaVeicolo(veicolo);
+		float costo = tariffa * chilometri;
+		float costoTassato = costo + costo * IVA;
+
+		return Math.round(costoTassato * 10) / 10f;
 	}
 
 }

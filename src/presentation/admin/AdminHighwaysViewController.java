@@ -1,9 +1,10 @@
 package presentation.admin;
 
+import business.AutostradaMgr;
 import business.Main;
 import business.model.Autostrada;
 import business.model.impl.Normativa2019Impl;
-import javafx.beans.property.SimpleFloatProperty;
+import common.ManagerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +14,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 import presentation.shared.Controller;
+
 
 public class AdminHighwaysViewController extends Controller {
 	
@@ -37,7 +40,11 @@ public class AdminHighwaysViewController extends Controller {
 	
 	
 	public AdminHighwaysViewController() {
-		autostrade.setAll(Main.AUTOSTRADE);
+		try {
+			autostrade.setAll(new AutostradaMgr().getAll());
+		} catch (ManagerException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
@@ -78,37 +85,44 @@ public class AdminHighwaysViewController extends Controller {
 	 
 	@FXML
 	public void handleModifica() {
-		Stage stage = new Stage();
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(AdminEditHighwayDialogController.class.getResource("admin-highway-dialog.fxml"));
-		try {
-			AdminEditHighwayDialogController controller = new AdminEditHighwayDialogController();
-			controller.setStage(stage);
-			controller.setAutostrada(autostradaSelezionata);
-			loader.setController(controller);
-			Pane parent = loader.load();
-			stage.setScene(new Scene(parent, 700, 500));
-			stage.setTitle("Modifica Autostrada");
-			
-			stage.showAndWait();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (autostradaSelezionata != null) {
+			Stage stage = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(AdminEditHighwayDialogController.class.getResource("admin-highway-dialog.fxml"));
+			try {
+				AdminEditHighwayDialogController controller = new AdminEditHighwayDialogController();
+				controller.setStage(stage);
+				controller.setAutostrada(autostradaSelezionata);
+				loader.setController(controller);
+				Pane parent = loader.load();
+				stage.setScene(new Scene(parent, 700, 500));
+				stage.setTitle("Modifica Autostrada");
+				
+				stage.showAndWait();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	@FXML
 	public void handleElimina() {
-		autostrade.remove(autostradaSelezionata);
+		if (autostradaSelezionata != null) {
+			try {
+				new AutostradaMgr().remove(autostradaSelezionata);
+				autostrade.remove(autostradaSelezionata);
+			} catch (ManagerException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	@FXML
 	public void handleMostraCaselli() {
-		AdminHighwayTollboothsViewController adminHighwayTollboothsViewController = new AdminHighwayTollboothsViewController();
-		adminHighwayTollboothsViewController.setAutostrada(autostradaSelezionata);
-		Main.changeScreen("admin-highway-tollbooths-view", adminHighwayTollboothsViewController, true);
-	}
-	
-	public void reset() {
-		
+		if (autostradaSelezionata != null) {
+			AdminHighwayTollboothsViewController adminHighwayTollboothsViewController = new AdminHighwayTollboothsViewController();
+			adminHighwayTollboothsViewController.setAutostrada(autostradaSelezionata);
+			Main.changeScreen("admin-highway-tollbooths-view", adminHighwayTollboothsViewController, true);
+		}
 	}
 }

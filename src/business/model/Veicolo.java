@@ -25,4 +25,5 @@ public interface Veicolo {
 	public void setAltezza(byte altezza);
 	public ClasseAmbientale getClasseAmbientale();
 	public void setClasseAmbientale(ClasseAmbientale classeAmbientale);
+	public void setClasseAmbientale(short short1);
 }

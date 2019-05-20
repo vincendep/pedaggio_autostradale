@@ -1,8 +1,11 @@
 package presentation.admin;
 
+import business.AutostradaMgr;
 import business.model.Autostrada;
 import business.model.Normativa;
+import business.model.impl.AutostradaImpl;
 import business.model.impl.Normativa2019Impl;
+import common.ManagerException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -52,15 +55,23 @@ public class AdminEditHighwayDialogController extends Controller {
 	
 	@FXML
 	public void confermaHandle() {
+		String nome = autostrada.getNome();
 		Normativa normativaVigente = autostrada.getNormativaVigente();
-		// TODO handle exceptions
-		autostrada.setNome(nomeField.getText());
-		normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_A, Float.parseFloat(tariffaClasseAField.getText()));
-		normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_B, Float.parseFloat(tariffaClasseBField.getText()));
-		normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_3, Float.parseFloat(tariffaClasse3Field.getText()));
-		normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_4, Float.parseFloat(tariffaClasse4Field.getText()));
-		normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_5, Float.parseFloat(tariffaClasse5Field.getText()));
 		
+		try {
+			
+			autostrada.setNome(nomeField.getText());
+			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_A, Float.parseFloat(tariffaClasseAField.getText()));
+			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_B, Float.parseFloat(tariffaClasseBField.getText()));
+			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_3, Float.parseFloat(tariffaClasse3Field.getText()));
+			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_4, Float.parseFloat(tariffaClasse4Field.getText()));
+			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_5, Float.parseFloat(tariffaClasse5Field.getText()));
+		
+			new AutostradaMgr().modify(nome, autostrada);
+			
+		} catch (ManagerException e) {
+			e.printStackTrace();
+		}
 		stage.close();
 	}
 	

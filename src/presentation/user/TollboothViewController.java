@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import business.Main;
+import business.VeicoloMgr;
 import business.model.Autostrada;
 import business.model.Casello;
 import business.model.Pedaggio;
@@ -15,6 +16,7 @@ import business.model.impl.CaselloImpl;
 import business.model.impl.Normativa2019Impl;
 import business.model.impl.PedaggioImpl;
 import business.model.impl.VeicoloImpl;
+import common.ManagerException;
 import common.PedaggioException;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -114,10 +116,11 @@ public class TollboothViewController extends Controller {
 					e = ca;
 				}
 			}
-			for(Veicolo ve: Main.VEICOLI) {
-				if (ve.getTarga().equalsIgnoreCase(t)) {
-					v = ve;
-				}
+			try {
+				v = new VeicoloMgr().load(t);
+			} catch (ManagerException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 			Pedaggio pedaggio = new PedaggioImpl();
 			pedaggio.setEntrata(e);

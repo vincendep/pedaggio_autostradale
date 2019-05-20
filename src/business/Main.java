@@ -29,12 +29,10 @@ public class Main extends Application {
 	private Stage stage;
 	private BorderPane root;
 	
-	public static List<Autostrada> AUTOSTRADE = new ArrayList<>();
-	public static List<Veicolo> VEICOLI = new ArrayList<>();
 	
 	public Main() {
 		//dummy data A74 veicolo
-		//TODO
+		/*
 		Autostrada autostrada = new AutostradaImpl();
 		autostrada.setNome("A74");
 		try {
@@ -72,6 +70,7 @@ public class Main extends Application {
 		veicolo.setClasseAmbientale(Veicolo.ClasseAmbientale.EURO_3);
 		veicolo.setTarga("XX999XX");
 		VEICOLI.add(veicolo);
+		*/
 	}
 	
 	public BorderPane getRoot() {

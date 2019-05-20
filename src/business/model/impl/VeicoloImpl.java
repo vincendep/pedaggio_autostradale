@@ -75,4 +75,9 @@ public class VeicoloImpl implements Veicolo {
 	public void setClasseAmbientale(ClasseAmbientale classeAmbientale) {
 		this.classeAmbientale = classeAmbientale;
 	}
+
+	@Override
+	public void setClasseAmbientale(short short1) {
+		this.classeAmbientale = ClasseAmbientale.values()[short1 - 1];
+	}
 }
