@@ -1,5 +1,11 @@
-bin\
+bin/
 
-lib\
+lib/
 
 build.fxbuild
+
+.gitignore
+
+.project
+
+.classpath
