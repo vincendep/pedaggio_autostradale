@@ -1,4 +1,4 @@
-package business;
+package business.manager;
 
 import business.model.Veicolo;
 import common.DaoException;
@@ -9,6 +9,13 @@ import dao.DaoFactory.FactoryType;
 public class VeicoloMgr {
 	
 	private DaoFactory factory = DaoFactory.getDaoFactory(FactoryType.MYSQL);
+	
+	
+	private VeicoloMgr() {}
+	
+	public static VeicoloMgr getInstance() {
+		return new VeicoloMgr();
+	}
 	
 	public Veicolo load(String targa) throws ManagerException {
 		try {

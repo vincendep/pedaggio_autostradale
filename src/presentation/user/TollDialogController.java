@@ -1,8 +1,7 @@
 package presentation.user;
 
 import business.model.Pedaggio;
-import business.model.impl.PedaggioImpl;
-import common.PedaggioException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;

@@ -8,8 +8,8 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="277.0" layoutY="210.0" mnemonicParsing="false" onAction="#userClick" text="User" />
-            <Button layoutX="485.0" layoutY="210.0" mnemonicParsing="false" onAction="#adminClick" text="Admin" />
+            <Button layoutX="170.0" layoutY="112.0" mnemonicParsing="false" onAction="#userClick" prefHeight="200.0" prefWidth="200.0" text="User" />
+            <Button layoutX="443.0" layoutY="112.0" mnemonicParsing="false" onAction="#adminClick" prefHeight="200.0" prefWidth="200.0" text="Admin" />
          </children>
       </Pane>
    </center>

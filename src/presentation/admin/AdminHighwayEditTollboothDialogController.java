@@ -1,7 +1,7 @@
 package presentation.admin;
 
 
-import business.CaselloMgr;
+import business.manager.CaselloMgr;
 import business.model.Casello;
 import common.ManagerException;
 import javafx.fxml.FXML;
@@ -46,7 +46,7 @@ public class AdminHighwayEditTollboothDialogController extends Controller {
 			casello.setChilometro(Integer.parseInt(chilometroField.getText()));
 			casello.setId(Integer.parseInt(identificativoField.getText()));
 			
-			new CaselloMgr().modify(nome, casello);
+			CaselloMgr.getInstance().modify(nome, casello);
 			
 		} catch (ManagerException e) {
 			e.printStackTrace();

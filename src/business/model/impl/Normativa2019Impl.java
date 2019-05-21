@@ -4,7 +4,7 @@ import business.model.Autostrada;
 import business.model.Casello;
 import business.model.Normativa;
 import business.model.Veicolo;
-import common.PercorsoException;
+
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
 
@@ -158,10 +158,7 @@ public class Normativa2019Impl implements Normativa {
 	}
 
 	@Override
-	public float calcolaPedaggio(Veicolo veicolo, Casello entrata, Casello uscita) throws PercorsoException {
-		if (! entrata.getAutostrada().equals(uscita.getAutostrada()) || entrata.equals(uscita)) {
-			throw new PercorsoException();
-		}
+	public float calcolaPedaggio(Veicolo veicolo, Casello entrata, Casello uscita) {
 
 		float chilometri = Math.abs(uscita.getChilometro() - entrata.getChilometro());
 		float tariffa = getTariffaVeicolo(veicolo);

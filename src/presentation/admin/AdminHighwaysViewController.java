@@ -1,7 +1,7 @@
 package presentation.admin;
 
-import business.AutostradaMgr;
 import business.Main;
+import business.manager.AutostradaMgr;
 import business.model.Autostrada;
 import business.model.impl.Normativa2019Impl;
 import common.ManagerException;
@@ -41,7 +41,7 @@ public class AdminHighwaysViewController extends Controller {
 	
 	public AdminHighwaysViewController() {
 		try {
-			autostrade.setAll(new AutostradaMgr().getAll());
+			autostrade.setAll(AutostradaMgr.getInstance().loadAll());
 		} catch (ManagerException e) {
 			e.printStackTrace();
 		}
@@ -109,7 +109,7 @@ public class AdminHighwaysViewController extends Controller {
 	public void handleElimina() {
 		if (autostradaSelezionata != null) {
 			try {
-				new AutostradaMgr().remove(autostradaSelezionata);
+				AutostradaMgr.getInstance().remove(autostradaSelezionata);
 				autostrade.remove(autostradaSelezionata);
 			} catch (ManagerException e) {
 				e.printStackTrace();

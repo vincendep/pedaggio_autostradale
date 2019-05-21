@@ -6,16 +6,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import business.Main;
-import business.VeicoloMgr;
-import business.model.Autostrada;
+import business.manager.VeicoloMgr;
 import business.model.Casello;
 import business.model.Pedaggio;
 import business.model.Veicolo;
-import business.model.impl.CaselloImpl;
-import business.model.impl.Normativa2019Impl;
 import business.model.impl.PedaggioImpl;
-import business.model.impl.VeicoloImpl;
 import common.ManagerException;
 import common.PedaggioException;
 import javafx.event.EventHandler;
@@ -117,7 +112,7 @@ public class TollboothViewController extends Controller {
 				}
 			}
 			try {
-				v = new VeicoloMgr().load(t);
+				v = VeicoloMgr.getInstance().load(t);
 			} catch (ManagerException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

@@ -1,8 +1,6 @@
 package presentation.admin;
 
-import java.util.List;
-
-import business.CaselloMgr;
+import business.manager.CaselloMgr;
 import business.model.Autostrada;
 import business.model.Casello;
 import business.model.impl.CaselloImpl;
@@ -41,7 +39,7 @@ public class AdminHighwayNewTollboothDialogController extends Controller {
 			casello.setChilometro(Integer.parseInt(chilometroField.getText()));
 			casello.setId(Integer.parseInt(identificativoField.getText()));
 			
-			new CaselloMgr().add(casello);
+			CaselloMgr.getInstance().save(casello);
 			autostrada.getCaselli().add(casello);
 		
 		} catch (ManagerException e) {

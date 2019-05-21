@@ -1,7 +1,7 @@
 package presentation.user;
 
-import business.AutostradaMgr;
 import business.Main;
+import business.manager.AutostradaMgr;
 import business.model.Autostrada;
 import business.model.Casello;
 import common.ManagerException;
@@ -40,7 +40,7 @@ public class HighwaysViewController extends Controller {
 	public HighwaysViewController() {
 	
 		try {
-			autostrade.setAll(new AutostradaMgr().getAll());
+			autostrade.setAll(AutostradaMgr.getInstance().loadAll());
 		
 		} catch (ManagerException e) {
 			e.printStackTrace();

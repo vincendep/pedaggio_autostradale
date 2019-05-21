@@ -1,10 +1,9 @@
 package presentation.admin;
 
-import business.AutostradaMgr;
-import business.CaselloMgr;
+import business.manager.CaselloMgr;
 import business.model.Autostrada;
 import business.model.Casello;
-import business.model.impl.CaselloImpl;
+
 import common.ManagerException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,7 +100,7 @@ public class AdminHighwayTollboothsViewController extends Controller {
 	@FXML
 	public void eliminaHandle() {
 		try {
-			new CaselloMgr().remove(caselloSelezionato);;
+			CaselloMgr.getInstance().remove(caselloSelezionato);;
 			autostrada.getCaselli().remove(caselloSelezionato);
 		} catch (ManagerException e) {
 			e.printStackTrace();

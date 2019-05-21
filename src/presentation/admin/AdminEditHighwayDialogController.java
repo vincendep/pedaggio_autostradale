@@ -1,9 +1,9 @@
 package presentation.admin;
 
-import business.AutostradaMgr;
+import business.manager.AutostradaMgr;
 import business.model.Autostrada;
 import business.model.Normativa;
-import business.model.impl.AutostradaImpl;
+
 import business.model.impl.Normativa2019Impl;
 import common.ManagerException;
 import javafx.fxml.FXML;
@@ -49,8 +49,6 @@ public class AdminEditHighwayDialogController extends Controller {
 		tariffaClasse3Field.setText(String.valueOf(normativaVigente.getTariffaClasseVeicolo(Normativa2019Impl.CLASSE_3)));
 		tariffaClasse4Field.setText(String.valueOf(normativaVigente.getTariffaClasseVeicolo(Normativa2019Impl.CLASSE_4)));
 		tariffaClasse5Field.setText(String.valueOf(normativaVigente.getTariffaClasseVeicolo(Normativa2019Impl.CLASSE_5)));
-	
-		
 	}
 	
 	@FXML
@@ -67,7 +65,7 @@ public class AdminEditHighwayDialogController extends Controller {
 			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_4, Float.parseFloat(tariffaClasse4Field.getText()));
 			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_5, Float.parseFloat(tariffaClasse5Field.getText()));
 		
-			new AutostradaMgr().modify(nome, autostrada);
+			AutostradaMgr.getInstance().modify(nome, autostrada);
 			
 		} catch (ManagerException e) {
 			e.printStackTrace();

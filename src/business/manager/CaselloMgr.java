@@ -1,51 +1,59 @@
-package business;
+package business.manager;
 
 import java.util.List;
 
 import business.model.Autostrada;
+import business.model.Casello;
 import common.DaoException;
 import common.ManagerException;
 import dao.DaoFactory;
 import dao.DaoFactory.FactoryType;
 
-public class AutostradaMgr {
+public class CaselloMgr {
 	
 	private DaoFactory factory = DaoFactory.getDaoFactory(FactoryType.MYSQL);
 	
 	
-	public List<Autostrada> getAll() throws ManagerException {
+	private CaselloMgr() {}
+	
+	public static CaselloMgr getInstance() {
+		return new CaselloMgr();
+	}
+	
+	public List<Casello> loadAll(Autostrada a) throws ManagerException {
 		try {
-			return factory.getAutostradaDao().loadAll();
+			return factory.getCaselloDao().loadAll(a);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ManagerException();
 		}
 	}
 	
-	public void add(Autostrada a) throws ManagerException {
+	public void save(Casello c) throws ManagerException {
 		try {
-			factory.getAutostradaDao().store(a);
+			factory.getCaselloDao().store(c);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ManagerException();
 		}
 	}
 	
-	public void remove(Autostrada a) throws ManagerException {
+	public void remove(Casello c) throws ManagerException {
 		try {
-			factory.getAutostradaDao().delete(a);
+			factory.getCaselloDao().delete(c);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ManagerException();
 		}
 	}
 	
-	public void modify(String nome, Autostrada a) throws ManagerException {
+	public void modify(String nome, Casello c) throws ManagerException {
 		try {
-			factory.getAutostradaDao().update(nome, a);
+			factory.getCaselloDao().update(nome, c);
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ManagerException();
 		}
 	}
+
 }
