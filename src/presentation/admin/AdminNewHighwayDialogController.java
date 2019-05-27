@@ -45,7 +45,7 @@ public class AdminNewHighwayDialogController extends Controller {
 		Autostrada autostrada = new AutostradaImpl();
 		Normativa normativaVigente;
 		try {
-			normativaVigente = (Normativa) Autostrada.NORMATIVA_VIGENTE.newInstance();
+			normativaVigente = (Normativa) Normativa.NORMATIVA_CORRENTE.newInstance();
 			normativaVigente.setAutostrada(autostrada);
 			autostrada.setNome(nomeField.getText());
 			autostrada.setNormativaVigente(normativaVigente);
@@ -60,6 +60,7 @@ public class AdminNewHighwayDialogController extends Controller {
 			
 		} catch (ManagerException e) {
 			e.printStackTrace();
+			showAlert("Impossibile aggiungere autostrada", "Dati non validi");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

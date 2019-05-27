@@ -94,7 +94,7 @@ public class Normativa2019Impl implements Normativa {
 	}
 	
 	@Override
-	public FloatProperty tariffaClasseProperty(int classe) {
+	public FloatProperty tariffaClasseVeicoloProperty(int classe) {
 		switch (classe) {
 			
 			case CLASSE_A:

@@ -58,7 +58,7 @@ class AutostradaMysqlDao extends MysqlDao implements AutostradaDao {
 			while (rs.next()) {
 				Autostrada autostrada = new AutostradaImpl();
 				autostrada.setNome(rs.getString("nome"));
-				autostrada.setNormativaVigente((Normativa) Autostrada.NORMATIVA_VIGENTE.newInstance());
+				autostrada.setNormativaVigente((Normativa) Normativa.NORMATIVA_CORRENTE.newInstance());
 				autostrada.getNormativaVigente().setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_A, (rs.getFloat("tariffa_classe_a")));
 				autostrada.getNormativaVigente().setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_B, (rs.getFloat("tariffa_classe_b")));
 				autostrada.getNormativaVigente().setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_3, (rs.getFloat("tariffa_classe_3")));

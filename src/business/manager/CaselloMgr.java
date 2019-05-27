@@ -9,6 +9,10 @@ import common.ManagerException;
 import dao.DaoFactory;
 import dao.DaoFactory.FactoryType;
 
+/*
+ * Manager implementing business logic regarding tollbooths
+ * @author vincendep
+ */
 public class CaselloMgr {
 	
 	private DaoFactory factory = DaoFactory.getDaoFactory(FactoryType.MYSQL);

@@ -3,7 +3,7 @@ package presentation.admin;
 import business.manager.AutostradaMgr;
 import business.model.Autostrada;
 import business.model.Normativa;
-
+import business.model.impl.AutostradaImpl;
 import business.model.impl.Normativa2019Impl;
 import common.ManagerException;
 import javafx.fxml.FXML;
@@ -53,22 +53,32 @@ public class AdminEditHighwayDialogController extends Controller {
 	
 	@FXML
 	public void confermaHandle() {
-		String nome = autostrada.getNome();
-		Normativa normativaVigente = autostrada.getNormativaVigente();
-		
 		try {
-			
-			autostrada.setNome(nomeField.getText());
-			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_A, Float.parseFloat(tariffaClasseAField.getText()));
-			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_B, Float.parseFloat(tariffaClasseBField.getText()));
-			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_3, Float.parseFloat(tariffaClasse3Field.getText()));
-			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_4, Float.parseFloat(tariffaClasse4Field.getText()));
-			normativaVigente.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_5, Float.parseFloat(tariffaClasse5Field.getText()));
+			Autostrada a = new AutostradaImpl();
+			Normativa n = (Normativa) Normativa.NORMATIVA_CORRENTE.newInstance();
+			a.setNome(nomeField.getText());
+			a.setNormativaVigente(n);
+			n.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_A, Float.parseFloat(tariffaClasseAField.getText()));
+			n.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_B, Float.parseFloat(tariffaClasseBField.getText()));
+			n.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_3, Float.parseFloat(tariffaClasse3Field.getText()));
+			n.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_4, Float.parseFloat(tariffaClasse4Field.getText()));
+			n.setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_5, Float.parseFloat(tariffaClasse5Field.getText()));
 		
-			AutostradaMgr.getInstance().modify(nome, autostrada);
+			AutostradaMgr.getInstance().modify(autostrada.getNome(), a);
+			
+			autostrada.setNome(a.getNome());
+			autostrada.getNormativaVigente().setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_A, n.getTariffaClasseVeicolo(Normativa2019Impl.CLASSE_A));
+			autostrada.getNormativaVigente().setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_B, n.getTariffaClasseVeicolo(Normativa2019Impl.CLASSE_B));
+			autostrada.getNormativaVigente().setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_3, n.getTariffaClasseVeicolo(Normativa2019Impl.CLASSE_3));
+			autostrada.getNormativaVigente().setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_4, n.getTariffaClasseVeicolo(Normativa2019Impl.CLASSE_4));
+			autostrada.getNormativaVigente().setTariffaClasseVeicolo(Normativa2019Impl.CLASSE_5, n.getTariffaClasseVeicolo(Normativa2019Impl.CLASSE_5));
 			
 		} catch (ManagerException e) {
 			e.printStackTrace();
+			showAlert("Impossibile modificare autostrada", "Dati inseriti non validi");
+		} catch (Exception e) {
+			e.printStackTrace();
+			showAlert("Impossibile modificare autostrada", "Tariffa non valida");
 		}
 		stage.close();
 	}

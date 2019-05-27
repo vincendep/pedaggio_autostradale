@@ -48,10 +48,6 @@ public class TollboothViewController extends Controller {
 		this.casello = casello;
 	}
 	
-	public Casello getCasello() {
-		return this.casello;
-	}
-	
 	public void setCasello(Casello casello) {
 		this.casello = casello;
 	}
@@ -77,20 +73,17 @@ public class TollboothViewController extends Controller {
             @Override
             public void handle(DragEvent event) {
                 Dragboard dragBoard = event.getDragboard();
-                boolean success = false;
                 if (dragBoard.hasFiles()) {
                     bigliettoLabel.setText(dragBoard.getUrl().substring(6));
-                    success = true;
                     bigliettoInserito = true;
                 }
-                event.setDropCompleted(success);
                 event.consume();
             }
         });
 	}
 	
 	@FXML
-	public void calcolaPedaggio() {
+	public void calcolaPedaggioHandle() {
 	// TODO refactor
 		if (bigliettoInserito) {
 			File file = new File(bigliettoLabel.getText());
@@ -114,7 +107,6 @@ public class TollboothViewController extends Controller {
 			try {
 				v = VeicoloMgr.getInstance().load(t);
 			} catch (ManagerException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			Pedaggio pedaggio = new PedaggioImpl();

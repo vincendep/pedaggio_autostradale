@@ -52,12 +52,11 @@ public class AdminHighwaysViewController extends Controller {
 		autostradaTable.setItems(this.autostrade);
 		nomeColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
 		
-		//TODO fix
-		tariffaClasseAColumn.setCellValueFactory(cellData -> cellData.getValue().getNormativaVigente().tariffaClasseProperty(Normativa2019Impl.CLASSE_A));
-		tariffaClasseBColumn.setCellValueFactory(cellData -> cellData.getValue().getNormativaVigente().tariffaClasseProperty(Normativa2019Impl.CLASSE_B));
-		tariffaClasse3Column.setCellValueFactory(cellData -> cellData.getValue().getNormativaVigente().tariffaClasseProperty(Normativa2019Impl.CLASSE_3));
-		tariffaClasse4Column.setCellValueFactory(cellData -> cellData.getValue().getNormativaVigente().tariffaClasseProperty(Normativa2019Impl.CLASSE_4));
-		tariffaClasse5Column.setCellValueFactory(cellData -> cellData.getValue().getNormativaVigente().tariffaClasseProperty(Normativa2019Impl.CLASSE_5));
+		tariffaClasseAColumn.setCellValueFactory(cellData -> cellData.getValue().getNormativaVigente().tariffaClasseVeicoloProperty(Normativa2019Impl.CLASSE_A));
+		tariffaClasseBColumn.setCellValueFactory(cellData -> cellData.getValue().getNormativaVigente().tariffaClasseVeicoloProperty(Normativa2019Impl.CLASSE_B));
+		tariffaClasse3Column.setCellValueFactory(cellData -> cellData.getValue().getNormativaVigente().tariffaClasseVeicoloProperty(Normativa2019Impl.CLASSE_3));
+		tariffaClasse4Column.setCellValueFactory(cellData -> cellData.getValue().getNormativaVigente().tariffaClasseVeicoloProperty(Normativa2019Impl.CLASSE_4));
+		tariffaClasse5Column.setCellValueFactory(cellData -> cellData.getValue().getNormativaVigente().tariffaClasseVeicoloProperty(Normativa2019Impl.CLASSE_5));
 
 		autostradaTable.getSelectionModel().selectedItemProperty().addListener((obeservable, oldValue, newValue) -> autostradaSelezionata = newValue);
 	}
@@ -75,7 +74,6 @@ public class AdminHighwaysViewController extends Controller {
 			Pane pane = loader.load();
 			stage.setScene(new Scene(pane, 700, 500));
 			stage.setTitle("Crea Autostrada");
-			
 			stage.showAndWait();
 			
 		} catch (Exception e) {
@@ -97,7 +95,6 @@ public class AdminHighwaysViewController extends Controller {
 				Pane parent = loader.load();
 				stage.setScene(new Scene(parent, 700, 500));
 				stage.setTitle("Modifica Autostrada");
-				
 				stage.showAndWait();
 			} catch (Exception e) {
 				e.printStackTrace();

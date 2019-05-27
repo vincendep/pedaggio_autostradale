@@ -41,7 +41,6 @@ public class AdminHighwayTollboothsViewController extends Controller {
 	
 	@FXML
 	public void initialize() {
-		
 		autostradaLabel.setText(autostrada.getNome());
 		caselliTable.setItems(autostrada.caselliProperty());
 		nomeColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());

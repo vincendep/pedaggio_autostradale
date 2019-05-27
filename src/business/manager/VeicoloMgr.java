@@ -6,6 +6,9 @@ import common.ManagerException;
 import dao.DaoFactory;
 import dao.DaoFactory.FactoryType;
 
+/*
+ * Manager implementing business logic regarding vehicles
+ */
 public class VeicoloMgr {
 	
 	private DaoFactory factory = DaoFactory.getDaoFactory(FactoryType.MYSQL);

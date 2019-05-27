@@ -43,7 +43,7 @@
       </VBox>
    </center>
    <bottom>
-      <Button mnemonicParsing="false" onAction="#calcolaPedaggio" text="Calcola pedaggio" BorderPane.alignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#calcolaPedaggioHandle" text="Calcola pedaggio" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </BorderPane.margin>

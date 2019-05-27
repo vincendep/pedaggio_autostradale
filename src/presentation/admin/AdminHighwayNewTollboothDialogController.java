@@ -44,6 +44,10 @@ public class AdminHighwayNewTollboothDialogController extends Controller {
 		
 		} catch (ManagerException e) {
 			e.printStackTrace();
+			showAlert("Impossibile aggiungere casello", "Il numero identificativo non è univoco");
+		} catch (Exception e) {
+			e.printStackTrace();
+			showAlert("Impossibile aggiungere casello", "Dati non validi");
 		}
 		stage.close();
 	}
@@ -52,4 +56,5 @@ public class AdminHighwayNewTollboothDialogController extends Controller {
 	public void handleCancella() {
 		stage.close();
 	}
+	
 }
