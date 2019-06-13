@@ -2,9 +2,9 @@ package presentation.admin;
 
 import business.Main;
 import business.manager.AutostradaMgr;
+import business.manager.ManagerException;
 import business.model.Autostrada;
 import business.model.impl.Normativa2019Impl;
-import common.ManagerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

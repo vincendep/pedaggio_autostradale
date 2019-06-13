@@ -13,7 +13,6 @@ import business.model.Autostrada;
 import business.model.Normativa;
 import business.model.impl.AutostradaImpl;
 import business.model.impl.Normativa2019Impl;
-import common.DaoException;
 import dao.DaoFactory.FactoryType;
 
 class AutostradaMysqlDao extends MysqlDao implements AutostradaDao {

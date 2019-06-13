@@ -1,8 +1,7 @@
 package business.manager;
 
 import business.model.Veicolo;
-import common.DaoException;
-import common.ManagerException;
+import dao.DaoException;
 import dao.DaoFactory;
 import dao.DaoFactory.FactoryType;
 
@@ -22,7 +21,11 @@ public class VeicoloMgr {
 	
 	public Veicolo load(String targa) throws ManagerException {
 		try {
-			return factory.getVeicoloDao().getByTarga(targa);
+			Veicolo v = factory.getVeicoloDao().getByTarga(targa);
+			if (v.equals(null)) {
+				throw new ManagerException();
+			}
+			return v;
 		} catch (DaoException e) {
 			e.printStackTrace();
 			throw new ManagerException();

@@ -1,7 +1,6 @@
 package dao;
 
 import business.model.Veicolo;
-import common.DaoException;
 
 public interface VeicoloDao {
 

@@ -16,4 +16,5 @@ public interface Autostrada {
 	public ObservableList<Casello> caselliProperty();
 	public Normativa getNormativaVigente();
 	public void setNormativaVigente(Normativa normativa);
+	public boolean equals(Object o);
 }

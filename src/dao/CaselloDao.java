@@ -4,7 +4,6 @@ import java.util.List;
 
 import business.model.Autostrada;
 import business.model.Casello;
-import common.DaoException;
 
 
 public interface CaselloDao {

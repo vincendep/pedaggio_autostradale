@@ -1,10 +1,9 @@
 package presentation.admin;
 
 import business.manager.CaselloMgr;
+import business.manager.ManagerException;
 import business.model.Autostrada;
 import business.model.Casello;
-
-import common.ManagerException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

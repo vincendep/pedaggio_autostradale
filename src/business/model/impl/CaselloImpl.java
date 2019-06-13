@@ -69,4 +69,14 @@ public class CaselloImpl implements Casello {
 	public void setAutostrada(Autostrada autostrada) {
 		this.autostrada = autostrada;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (! (o instanceof Casello)) {
+			return false;
+		} else {
+			Casello c = (Casello) o;
+			return c.getId() == this.getId();
+		}
+	}
 }

@@ -4,8 +4,7 @@ import java.util.List;
 
 import business.model.Autostrada;
 import business.model.Casello;
-import common.DaoException;
-import common.ManagerException;
+import dao.DaoException;
 import dao.DaoFactory;
 import dao.DaoFactory.FactoryType;
 
@@ -22,6 +21,19 @@ public class CaselloMgr {
 	
 	public static CaselloMgr getInstance() {
 		return new CaselloMgr();
+	}
+	
+	public Casello load(String nome) throws ManagerException {
+		List<Autostrada> autostrade = AutostradaMgr.getInstance().loadAll();
+		for (Autostrada a: autostrade) {
+			List<Casello> caselli = loadAll(a);
+			for (Casello c: caselli) {
+				if (c.getNome().equalsIgnoreCase(nome)) {
+					return c;
+				}
+			}
+		}
+		return null;
 	}
 	
 	public List<Casello> loadAll(Autostrada a) throws ManagerException {

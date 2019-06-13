@@ -3,7 +3,6 @@ package business.model.impl;
 import business.model.Casello;
 import business.model.Pedaggio;
 import business.model.Veicolo;
-import common.PedaggioException;
 
 
 public class PedaggioImpl implements Pedaggio {
@@ -42,11 +41,7 @@ public class PedaggioImpl implements Pedaggio {
 		return this.prezzo;
 	}
 	
-	public void calcolaPrezzo() throws PedaggioException {
-		if (entrata == uscita || ! uscita.getAutostrada().equals(entrata.getAutostrada())) {
-			throw new PedaggioException();
-		} else {
-			this.prezzo = uscita.getAutostrada().getNormativaVigente().calcolaPedaggio(veicolo, entrata, uscita);
-		}
+	public void setPrezzo(float prezzo) {
+		this.prezzo = prezzo;
 	}
 }

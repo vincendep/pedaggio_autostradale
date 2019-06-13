@@ -8,14 +8,12 @@ import java.sql.Statement;
 import business.model.Veicolo;
 import business.model.impl.VeicoloImpl;
 
-import common.DaoException;
-
 
 class VeicoloMysqlDao extends MysqlDao implements VeicoloDao {
 
 	@Override
 	public Veicolo getByTarga(String targa) throws DaoException {
-		Veicolo v = new VeicoloImpl();
+		Veicolo v = null;
 		Connection c = connect();
 		Statement s = null;
 		ResultSet rs = null;
@@ -23,6 +21,7 @@ class VeicoloMysqlDao extends MysqlDao implements VeicoloDao {
 			s = c.createStatement();
 			rs = s.executeQuery("SELECT * FROM veicolo WHERE targa = '" + targa + "'");
 			while (rs.next()) {
+				v = new VeicoloImpl();
 				v.setId(rs.getInt("id"));
 				v.setModello(rs.getString("modello"));
 				v.setMarca(rs.getString("marca"));

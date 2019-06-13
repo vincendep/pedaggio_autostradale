@@ -1,7 +1,5 @@
 package business.model;
 
-import common.PedaggioException;
-
 public interface Pedaggio {
 	
 	public Veicolo getVeicolo();
@@ -11,5 +9,5 @@ public interface Pedaggio {
 	public Casello getUscita();
 	public void setUscita(Casello uscita);
 	public float getPrezzo();
-	public void calcolaPrezzo() throws PedaggioException;
+	public void setPrezzo(float prezzo);
 }

@@ -3,6 +3,7 @@ package business.model.impl;
 import business.model.Autostrada;
 import business.model.Casello;
 import business.model.Normativa;
+import business.model.Pedaggio;
 import business.model.Veicolo;
 
 import javafx.beans.property.FloatProperty;
@@ -158,14 +159,20 @@ public class Normativa2019Impl implements Normativa {
 	}
 
 	@Override
-	public float calcolaPedaggio(Veicolo veicolo, Casello entrata, Casello uscita) {
+	public Pedaggio calcolaPedaggio(Veicolo veicolo, Casello entrata, Casello uscita) {
 
 		float chilometri = Math.abs(uscita.getChilometro() - entrata.getChilometro());
 		float tariffa = getTariffaVeicolo(veicolo);
 		float costo = tariffa * chilometri;
 		float costoTassato = costo + costo * IVA;
-
-		return Math.round(costoTassato * 10) / 10f;
+		float costoArrotondato =  Math.round(costoTassato * 10) / 10f;
+		
+		Pedaggio pedaggio = new PedaggioImpl();
+		pedaggio.setEntrata(entrata);
+		pedaggio.setUscita(uscita);
+		pedaggio.setVeicolo(veicolo);
+		pedaggio.setPrezzo(costoArrotondato);
+		return pedaggio;
 	}
 
 }

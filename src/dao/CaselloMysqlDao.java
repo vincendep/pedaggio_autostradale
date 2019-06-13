@@ -12,7 +12,6 @@ import business.model.Autostrada;
 import business.model.Casello;
 
 import business.model.impl.CaselloImpl;
-import common.DaoException;
 import dao.DaoFactory.FactoryType;
 
 class CaselloMysqlDao extends MysqlDao implements CaselloDao {
@@ -27,14 +26,14 @@ class CaselloMysqlDao extends MysqlDao implements CaselloDao {
 	@Override
 	public List<Casello> loadAll(Autostrada autostrada) throws DaoException {
 		List<Casello> caselli = new ArrayList<>();
-		int id_autostrada = DaoFactory.getDaoFactory(FactoryType.MYSQL).getAutostradaDao().getId(autostrada);
+		int idAutostrada = DaoFactory.getDaoFactory(FactoryType.MYSQL).getAutostradaDao().getId(autostrada);
 		
 		Connection connection = connect();
 		Statement s = null;
 		ResultSet rs = null;
 		try {
 			s = connection.createStatement();
-			rs = s.executeQuery("SELECT * FROM casello WHERE id_autostrada = " + id_autostrada);
+			rs = s.executeQuery("SELECT * FROM casello WHERE id_autostrada = " + idAutostrada);
 			while (rs.next()) {
 				Casello casello = new CaselloImpl();
 				casello.setId(rs.getInt("id"));
@@ -72,6 +71,8 @@ class CaselloMysqlDao extends MysqlDao implements CaselloDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException();
+		} finally {
+			closeConnection(c, s, rs);
 		}
 		return casello;
 	}
@@ -96,6 +97,8 @@ class CaselloMysqlDao extends MysqlDao implements CaselloDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DaoException();
+		} finally {
+			closeConnection(c, s, rs);
 		}
 		return casello;
 	}

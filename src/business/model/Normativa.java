@@ -1,4 +1,4 @@
-package business.model;
+ package business.model;
 
 import business.model.impl.Normativa2019Impl;
 import javafx.beans.property.FloatProperty;
@@ -33,7 +33,7 @@ public interface Normativa {
 	void setTariffaClasseVeicolo(int classeVeicolo, float tariffa);
 	FloatProperty tariffaClasseVeicoloProperty(int classe);
 	float getTariffaVeicolo(Veicolo veicolo);
-	float calcolaPedaggio(Veicolo veicolo, Casello entrata, Casello uscita);
+	Pedaggio calcolaPedaggio(Veicolo veicolo, Casello entrata, Casello uscita);
 	int getClasseVeicolo(Veicolo veicolo);
 	
 }

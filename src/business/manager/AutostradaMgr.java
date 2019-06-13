@@ -3,8 +3,7 @@ package business.manager;
 import java.util.List;
 
 import business.model.Autostrada;
-import common.DaoException;
-import common.ManagerException;
+import dao.DaoException;
 import dao.DaoFactory;
 import dao.DaoFactory.FactoryType;
 

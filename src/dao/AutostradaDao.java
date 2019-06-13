@@ -3,7 +3,6 @@ package dao;
 import java.util.List;
 
 import business.model.Autostrada;
-import common.DaoException;
 
 public interface AutostradaDao {
 

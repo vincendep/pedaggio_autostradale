@@ -3,12 +3,11 @@ package presentation.admin;
 import java.util.List;
 
 import business.manager.AutostradaMgr;
+import business.manager.ManagerException;
 import business.model.Autostrada;
 import business.model.Normativa;
 import business.model.impl.AutostradaImpl;
 import business.model.impl.Normativa2019Impl;
-import common.ManagerException;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;

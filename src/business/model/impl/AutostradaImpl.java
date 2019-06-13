@@ -57,4 +57,13 @@ public class AutostradaImpl implements Autostrada {
 	public ObservableList<Casello> caselliProperty() {
 		return this.caselli;
 	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Autostrada) {
+			Autostrada a = (Autostrada) o;
+			return this.getNome().equals(a.getNome());
+		} else {
+			return false;
+		}
+	}
 }
