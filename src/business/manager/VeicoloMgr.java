@@ -1,9 +1,9 @@
 package business.manager;
 
 import business.model.Veicolo;
-import dao.DaoException;
-import dao.DaoFactory;
-import dao.DaoFactory.FactoryType;
+import data.DaoException;
+import data.DaoFactory;
+import data.DaoFactory.FactoryType;
 
 /*
  * Manager implementing business logic regarding vehicles

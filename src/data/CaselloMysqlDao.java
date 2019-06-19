@@ -1,4 +1,4 @@
-package dao;
+package data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import business.model.Autostrada;
 import business.model.Casello;
 
 import business.model.impl.CaselloImpl;
-import dao.DaoFactory.FactoryType;
+import data.DaoFactory.FactoryType;
 
 class CaselloMysqlDao extends MysqlDao implements CaselloDao {
 	

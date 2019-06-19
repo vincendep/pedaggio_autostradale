@@ -3,9 +3,9 @@ package business.manager;
 import java.util.List;
 
 import business.model.Autostrada;
-import dao.DaoException;
-import dao.DaoFactory;
-import dao.DaoFactory.FactoryType;
+import data.DaoException;
+import data.DaoFactory;
+import data.DaoFactory.FactoryType;
 
 /*
  * Manager implementing business logic regarding highways

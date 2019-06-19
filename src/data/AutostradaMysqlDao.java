@@ -1,4 +1,4 @@
-package dao;
+package data;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ import business.model.Autostrada;
 import business.model.Normativa;
 import business.model.impl.AutostradaImpl;
 import business.model.impl.Normativa2019Impl;
-import dao.DaoFactory.FactoryType;
+import data.DaoFactory.FactoryType;
 
 class AutostradaMysqlDao extends MysqlDao implements AutostradaDao {
 	

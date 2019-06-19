@@ -1,4 +1,4 @@
-package dao;
+package data;
 
 class MysqlDaoFactory extends DaoFactory {
 	
